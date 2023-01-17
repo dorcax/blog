@@ -40,9 +40,9 @@ app.get("/blogs/new",(req,res)=>{
  })
 app.post("/blogs",catchAsync(async(req,res)=>{
     
-    if(!newpost){
-        throw new serverError(" enter new post")
-     }const newpost = new Blog (req.body)
+    if(!req.body.newpost
+        ) throw new serverError(" Invalid post",400)
+     const newpost = new Blog (req.body)
   
      await newpost.save()
     
